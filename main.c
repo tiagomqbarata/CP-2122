@@ -4,7 +4,7 @@
 
 #include "papi.h"
 
-#include "gemm.h"
+#include "bucket-sort.h"
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *version);
 static int alloc_matrix (int *m, int N);
