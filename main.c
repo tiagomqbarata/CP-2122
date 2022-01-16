@@ -63,7 +63,7 @@ fprintf(stdout, "0");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  bucketSort (a, m_size);
+  bucketSort (&a, m_size);
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
