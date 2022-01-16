@@ -65,7 +65,7 @@ fprintf(stdout, "0");
   // warmup caches
   fprintf (stdout, "Warming up caches...");
   memcpy(ptr, a, m_size);
-  bucketSort (a, m_size, buckets);
+  bucketSort (a, m_size, max_random, buckets);
   memcpy(a, ptr, m_size);
   fprintf (stdout, "done!\n");
 
@@ -86,7 +86,7 @@ fprintf(stdout, "0");
      return 0;
    }
 
-   bucketSort (a, m_size, buckets);
+   bucketSort (a, m_size, max_random, buckets);
 
 
    /* Stop counting events */

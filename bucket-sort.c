@@ -11,11 +11,11 @@ void quickSort(int arr[], int low, int high) ;
 int getBucketIndex(int value, int interval) ;
 
 // Sorting function
-void bucketSort(int arr[], int size, int nBuckets) {
+void bucketSort(int arr[], int size, int max, int nBuckets) {
 
   int i, j, k;
-  int interval = size/nBuckets;
-  int lastIndex[size];
+  int interval = max/nBuckets;
+  int lastIndex[nBuckets];
 
   memset( lastIndex, 0, size*sizeof(int) );
 
