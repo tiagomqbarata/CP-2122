@@ -29,7 +29,7 @@ void bucketSort(int arr[], int size) {
   for (i = 0; i < NBUCKET; ++i) {
     buckets[i] = NULL;
   }
-/*
+
   // Fill the buckets with respective elements
   for (i = 0; i < size; ++i) {
     struct Node *current;
@@ -39,7 +39,7 @@ void bucketSort(int arr[], int size) {
     current->next = buckets[pos];
     buckets[pos] = current;
   }
-
+/*
   // Print the buckets along with their elements
   for (i = 0; i < NBUCKET; i++) {
     printf("Bucket[%d]: ", i);
