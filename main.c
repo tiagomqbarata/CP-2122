@@ -169,10 +169,10 @@ void print_usage (char *msg) {
 int alloc_matrix (int *m, int N) {
 
 //	*m = (int*) malloc (N*sizeof(int));
-	if (!(*m)) {
+//	if (!(*m)) {
 		print_usage ((char *)"Could not allocate memory for array!");
 		return 0;
-	}
+//	}
 	return 1;
 }
 
