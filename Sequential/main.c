@@ -130,6 +130,10 @@ fprintf(stdout, "0");
   }
 #endif
 
+  printf("/n/n ");
+  for(ptr = a, i = 0; i < m_size; i++, ptr++)
+  printf("%d - ", *ptr);
+  printf("/n/n ");
 
   free_array (&a);
 
