@@ -63,7 +63,7 @@ fprintf(stdout, "0");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  bucketSort (a, m_size);
+  bucketSort (a, m_size, buckets);
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
@@ -81,7 +81,7 @@ fprintf(stdout, "0");
      return 0;
    }
 
-   bucketSort (a, m_size);
+   bucketSort (a, m_size, buckets);
 
 
    /* Stop counting events */
@@ -153,7 +153,7 @@ int verify_command_line (int argc, char *argv[], int *total_elements, int *max, 
 		return 0;
 	}
 	else 
-		*version = val;
+		*max = val;
 
   val = atoi (argv[3]);
 

@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NBUCKET 10  // Number of buckets
 
 struct Node {
   int data;
@@ -13,10 +12,10 @@ struct Node {
 struct Node *InsertionSort(struct Node *list);
 void print(int arr[], int size);
 void printBuckets(struct Node *list);
-int getBucketIndex(int value);
+int getBucketIndex(int value, int INTERVAL);
 
 // Sorting function
-void bucketSort(int arr[], int size) {
+void bucketSort(int arr[], int size, int NBUCKET) {
 
   int i, j;
   struct Node **buckets;
@@ -34,7 +33,7 @@ void bucketSort(int arr[], int size) {
   // Fill the buckets with respective elements
   for (i = 0; i < size; ++i) {
     struct Node *current;
-    int pos = getBucketIndex(arr[i]);
+    int pos = getBucketIndex(arr[i], INTERVAL);
     current = (struct Node *)malloc(sizeof(struct Node));
     current->data = arr[i];
     current->next = buckets[pos];
@@ -103,7 +102,7 @@ struct Node *InsertionSort(struct Node *list) {
   return nodeList;
 }
 
-int getBucketIndex(int value) {
+int getBucketIndex(int value, int INTERVAL) {
   return value / INTERVAL;
 }
 
