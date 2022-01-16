@@ -8,7 +8,7 @@
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *version);
 static int alloc_array (int **m, int m_size);
-static int init_array (int **m, int m_size);
+static int init_array (int **m, int m_size, int max);
 static int free_array (int **m);
 static void print_usage (char *msg);
 
