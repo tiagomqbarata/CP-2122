@@ -28,12 +28,11 @@ fprintf(stdout, "0");
   int m_size, total_elements, max_random, i, run;
   int *a;
   int num_hwcntrs = 0;
-printf("1");
+
   if (!verify_command_line (argc, argv, &m_size, &max_random)) {
 	  return 0;
   }
   total_elements = m_size;
-printf("2");
 
   fprintf (stdout, "\nSetting up PAPI...");
   // Initialize PAPI 
@@ -56,11 +55,10 @@ printf("2");
 
   // create an instance for random function, with a constant seed
   srand(18);
-printf("3");
 
   // ini A array
   fprintf (stdout, "Initializing Array A...");
-//  if (!init_array (a, total_elements, max_random)) return 0;
+  if (!init_array (a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
 printf("4");
