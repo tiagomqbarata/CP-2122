@@ -57,15 +57,17 @@ fprintf(stdout, "0");
 
   // ini A array
   fprintf (stdout, "Initializing Array A...");
-  if (!init_array (a, total_elements, max_random)) return 0;
+  if (!init_array (&a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
+
+/*
   int *ptr;
   for (i=0 , ptr = a ; i<total_elements ; i++ , ptr++) {
     // printf("%i %i\n", *ptr, m);
       printf("%i - ",*ptr );
     }
-
+*/
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
@@ -183,9 +185,10 @@ int init_array (int *m, int N, int max) {
  	int i;
 	int *ptr;
 
-	if (!alloc_array (&m, N)) return 0;
+	if (!alloc_array (m, N)) return 0;
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
-    *ptr = rand() % max;
+    *ptr = rand() % max;~
+    printf("%d", *ptr);
 	}
 	return 1;
 } 
