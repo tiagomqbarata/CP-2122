@@ -81,7 +81,7 @@ fprintf(stdout, "0");
      return 0;
    }
 
-  // bucketSort (a, m_size);
+   bucketSort (a, m_size);
 
 
    /* Stop counting events */
@@ -122,7 +122,7 @@ fprintf(stdout, "0");
   }
 #endif
 
-//  free_array (a);
+  free_array (&a);
 
   printf ("\nThat's all, folks\n");
   return 1;
