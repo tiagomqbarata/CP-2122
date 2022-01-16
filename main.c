@@ -8,12 +8,12 @@
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *version);
 static int alloc_matrix (int *m, int N);
-static int ini_matrix (int *m, int N, int max);
+static int init_array (int *m, int N, int max);
 static int free_array (int *m);
 static void print_usage (char *msg);
 static int my_rand (int max);
 
-#define NUM_EVENTS 2
+#define NUM_EVENTS 4
 int Events[NUM_EVENTS] = { PAPI_TOT_CYC, PAPI_TOT_INS, PAPI_L1_DCM, PAPI_L2_DCM};
 
 // PAPI counters' values
@@ -27,11 +27,12 @@ int main (int argc, char *argv[]) {
   int m_size, total_elements, max_random, i, run;
   int *a;
   int num_hwcntrs = 0;
-
+printf("1");
   if (!verify_command_line (argc, argv, &m_size, &max_random)) {
 	  return 0;
   }
   total_elements = m_size;
+printf("2");
 
   fprintf (stdout, "\nSetting up PAPI...");
   // Initialize PAPI 
@@ -54,17 +55,20 @@ int main (int argc, char *argv[]) {
 
   // create an instance for random function, with a constant seed
   srand(18);
+printf("3");
 
   // ini A array
   fprintf (stdout, "Initializing Array A...");
-  if (!ini_matrix (a, total_elements, max_random)) return 0;
+  if (!init_array (a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
+printf("4");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
   bucketSort (a, m_size);
   fprintf (stdout, "done!\n");
+printf("5");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
    fprintf (stderr, "\nrun=%d", run);
@@ -122,7 +126,7 @@ int main (int argc, char *argv[]) {
   }
 #endif
 
-  free_array (&a);
+  free_array (a);
 
   printf ("\nThat's all, folks\n");
   return 1;
@@ -177,7 +181,7 @@ int my_rand (int max) {
   return rand() % max;
 }
 
-int ini_matrix (int *m, int N, int max) {
+int init_array (int *m, int N, int max) {
  	int i;
 	int *ptr;
 
