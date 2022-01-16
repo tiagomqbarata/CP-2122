@@ -173,17 +173,13 @@ m = (int*) malloc (N*sizeof(int));
 	return 1;
 }
 
-int my_rand (int max) {
-  return rand() % max;
-}
-
 int init_array (int *m, int N, int max) {
  	int i;
 	int *ptr;
 
 	if (!alloc_array (m, N)) return 0;
 	for (i=0 , ptr = (*m) ; i<N ; i++ , ptr++) {
-    *ptr = my_rand(max);
+    *ptr = rand() % max;
 	}
 	return 1;
 } 
