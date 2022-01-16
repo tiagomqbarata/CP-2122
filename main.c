@@ -185,9 +185,9 @@ int init_array (int *m, int N, int max) {
 	int *ptr;
 
 	if (!alloc_matrix (m, N)) return 0;
-	for (i=0 , ptr = m ; i<N ; i++ , ptr++) {
-		*ptr = my_rand(max);
-	}
+//	for (i=0 , ptr = m ; i<N ; i++ , ptr++) {
+		//*ptr = my_rand(max);
+//	}
 	return 1;
 } 
 
