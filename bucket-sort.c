@@ -11,7 +11,7 @@ void quickSort(int arr[], int low, int high) ;
 int getBucketIndex(int value, int interval) ;
 
 // Sorting function
-void bucketSort(int arr[], int size, int max, int nBuckets) {
+void bucketSort(int arr[], int size, int nBuckets) {
 
   int i, j, k;
   int interval = size/nBuckets;
@@ -107,6 +107,7 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, pi + 1, high); 
     } 
 } 
+
 
 
 /*
