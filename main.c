@@ -182,10 +182,10 @@ int my_rand (int max) {
 
 int init_array (int *m, int N, int max) {
  	int i;
-	int *ptr = 2;
+	int *ptr;
 
 	if (!alloc_array (m, N)) return 0;
-	for (i=0 , ptr = m ; i<N ; i++ , ptr++) {
+	for (i=0 , ptr = (*m) ; i<N ; i++ , ptr++) {
   //  *ptr = my_rand(max);
 	}
 	return 1;
