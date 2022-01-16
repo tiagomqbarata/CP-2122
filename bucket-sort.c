@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NBUCKET 6  // Number of buckets
+#define NBUCKET 10  // Number of buckets
 #define INTERVAL 10  // Each bucket capacity
 
 struct Node {
@@ -15,6 +15,9 @@ struct Node *InsertionSort(struct Node *list);
 void print(int arr[], int size);
 void printBuckets(struct Node *list);
 int getBucketIndex(int value);
+
+
+
 
 // Sorting function
 void bucketSort(int arr[], int size) {
@@ -44,7 +47,7 @@ void bucketSort(int arr[], int size) {
   for (i = 0; i < NBUCKET; ++i) {
     buckets[i] = InsertionSort(buckets[i]);
   }
-/*
+
   // Put sorted elements on arr
   for (j = 0, i = 0; i < NBUCKET; ++i) {
     struct Node *node;
@@ -56,7 +59,6 @@ void bucketSort(int arr[], int size) {
   }
 
   return;
- */
 }
 
 // Function to sort the elements of each bucket
@@ -80,7 +82,7 @@ struct Node *InsertionSort(struct Node *list) {
       nodeList = tmp;
       continue;
     }
-/*
+
     for (ptr = nodeList; ptr->next != 0; ptr = ptr->next) {
       if (ptr->next->data > k->data)
         break;
@@ -98,7 +100,7 @@ struct Node *InsertionSort(struct Node *list) {
       k = k->next;
       ptr->next->next = 0;
       continue;
-    }*/
+    }
   }
   return nodeList;
 }
@@ -121,5 +123,24 @@ void printBuckets(struct Node *list) {
   while (cur) {
     printf("%d ", cur->data);
     cur = cur->next;
+  }
+}
+
+
+int main(int argc, char const *argv[])
+{
+  int size = 100, max = 100;
+  int a[size];
+
+  for(int i = 0; i < size; i++){
+    a[i] = rand() % max;
+    printf("%d - ", a[i]);
+  }
+
+
+  bucketSort(a,size);
+  printf("\n\n\n ");
+  for(int i = 0; i < size; i++){
+    printf("%d - ", a[i]);
   }
 }
