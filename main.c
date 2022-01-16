@@ -165,7 +165,7 @@ void print_usage (char *msg) {
 
 int alloc_array (int *m, int N) {
 
-  m = (int*) malloc (N*sizeof(int));
+  *m = (int*) malloc (N*sizeof(int));
 	if (!(m)) {
 		print_usage ((char *)"Could not allocate memory for array!");
 		return 0;
