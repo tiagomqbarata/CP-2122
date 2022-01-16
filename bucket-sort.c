@@ -14,7 +14,7 @@ int getBucketIndex(int value, int interval) ;
 void bucketSort(int arr[], int size, int max, int nBuckets) {
 
   int i, j, k;
-  int interval = max/nBuckets;
+  int interval = size/nBuckets;
   int lastIndex[size];
 
   memset( lastIndex, 0, size*sizeof(int) );
