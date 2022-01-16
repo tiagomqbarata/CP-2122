@@ -181,7 +181,7 @@ int init_array (int *m, int N, int max) {
  // printf("/n AQUIIIIIII %d/n ", m);
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
-    *ptr = (int) rand() % max;
+    *ptr = rand() % max;
 	}
 	return 1;
 } 
