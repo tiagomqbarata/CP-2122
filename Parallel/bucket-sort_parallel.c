@@ -13,7 +13,7 @@ int getBucketIndex(int value, int interval) ;
 
 // Sorting function
 void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
-
+  #pragma omp parallel num_threads(16)
   int i, j, k;
   int interval = maxRandomNumber/nBuckets;
   int lastIndex[nBuckets];
@@ -21,16 +21,21 @@ void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
   // Inicialize lastIndex
   memset( lastIndex, 0, nBuckets*sizeof(int) );
 
-  // Inicialize buckets and reserved space
-  int **buckets = (int**) malloc(nBuckets * sizeof(int*));
-  for (i = 0; i < nBuckets; ++i) {
-    buckets[i] = (int*)malloc(nElementos*sizeof(int));
+  #pragma omp for schedule(dynamic)
+  {
+    // Inicialize buckets and reserved space
+    int **buckets = (int**) malloc(nBuckets * sizeof(int*));
+    for (i = 0; i < nBuckets; ++i) {
+      buckets[i] = (int*)malloc(nElementos*sizeof(int));
+    }
   }
-
   // Separate numbers by buckets
-  for (i = 0; i < nElementos; ++i) {
-    int pos = getBucketIndex(arr[i], interval);
-    buckets[pos][lastIndex[pos]++] = arr[i];
+  #pragma omp for schedule(dynamic)
+  {
+    for (i = 0; i < nElementos; ++i) {
+      int pos = getBucketIndex(arr[i], interval);
+      buckets[pos][lastIndex[pos]++] = arr[i];
+    }
   }
 
 /*
@@ -48,14 +53,25 @@ void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
     if(lastIndex[i])
       quickSort(buckets[i], lastIndex[i]-1);
     
-
-  // Put sorted elements on arr
-  for (j = 0, i = 0; i < nBuckets; ++i) 
-    for(k = 0; k < lastIndex[i]; k++ )
-      arr[j++] = buckets[i][k];
-
+  #pragma omp parallel for
+  {
+    // Put sorted elements on arr
+    for (j = 0, i = 0; i < nBuckets; ++i) 
+      #pragma omp task 
+      j = position(lastIndex, i);
+      for(k = 0; k < lastIndex[i]; k++ )
+        arr[j++] = buckets[i][k];
+  }
 
   return;
+}
+
+int position(int lastIndex[], int i){
+  int j, sum = 0;
+  for(j = 0; j < i; j++)
+    sum += lastIndex[j];
+
+  return sum;
 }
 
 int getBucketIndex(int value, int interval) {
