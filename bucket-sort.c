@@ -39,7 +39,7 @@ void bucketSort(int arr[], int size) {
     current->next = buckets[pos];
     buckets[pos] = current;
   }
-
+/*
   // Sort the elements of each bucket
   for (i = 0; i < NBUCKET; ++i) {
     buckets[i] = InsertionSort(buckets[i]);
@@ -56,7 +56,7 @@ void bucketSort(int arr[], int size) {
   }
 
   return;
-
+ */
 }
 
 // Function to sort the elements of each bucket
