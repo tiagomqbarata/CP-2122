@@ -11,7 +11,6 @@ static int alloc_array (int *m, int N);
 static int init_array (int *m, int N, int max);
 static int free_array (int *m);
 static void print_usage (char *msg);
-static int my_rand (int max);
 
 #define NUM_EVENTS 4
 int Events[NUM_EVENTS] = { PAPI_TOT_CYC, PAPI_TOT_INS, PAPI_L1_DCM, PAPI_L2_DCM};
@@ -61,9 +60,16 @@ fprintf(stdout, "0");
   if (!init_array (a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
+  int *ptr;
+  for (i=0 , ptr = a ; i<total_elements ; i++ , ptr++) {
+    // printf("%i %i\n", *ptr, m);
+      printf("%i - ",*ptr );
+    }
+
+
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  bucketSort (&a, m_size);
+  //bucketSort (&a, m_size);
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 

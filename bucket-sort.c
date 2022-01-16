@@ -127,7 +127,13 @@ int main(int argc, char const *argv[])
   }
 }
 */ 
-/*
+
+
+
+
+
+
+/*/
 int alloc_array (int *m, int N) {
 
   *m = (int*) malloc (N*sizeof(int));
@@ -147,6 +153,8 @@ int main(int argc, char const *argv[])
    // printf("%i %i\n", *ptr, m);
     *ptr = (int) rand() % 100;
 	}
+
+  bucketSort(m, 100);
 
   for (i=0 , ptr = m ; i<100 ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
