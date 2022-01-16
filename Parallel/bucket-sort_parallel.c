@@ -67,7 +67,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
 }
 
 int position(int lastIndex[], int i){
-  int j, sum = 0;
+  sum = 0;
   for(j = 0; j < i; j++)
     sum += lastIndex[j];
 
