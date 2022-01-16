@@ -73,5 +73,5 @@ int free_array (int *m) {
 }
 
 int main (int argc, char *argv[]) {
-fprintf(stdout, "DEU");
+printf("DEU\n\n");
 }
