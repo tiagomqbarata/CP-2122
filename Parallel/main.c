@@ -65,13 +65,13 @@ fprintf(stdout, "0");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  memcpy(ptr, a, m_size);
+  memcpy(ptr, a, m_size*sizeof(int));
   bucketSortParallel (a, m_size, max_random, buckets);
-  memcpy(a, ptr, m_size);
+  memcpy(a, ptr, m_size*sizeof(int));
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
-    memcpy(ptr, a, m_size);
+    memcpy(ptr, a, m_size*sizeof(int));
 
     fprintf (stderr, "\nrun=%d", run);
 
@@ -105,7 +105,7 @@ fprintf(stdout, "0");
       min_usec = elapsed_usec;
       for (i=0 ; i< NUM_EVENTS ; i++) min_values[i] = values [i];
    }
-     memcpy(a, ptr, m_size);
+     memcpy(a, ptr, m_size*sizeof(int));
 
 
   } // end runs

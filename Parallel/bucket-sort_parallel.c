@@ -176,7 +176,6 @@ int main(int argc, char const *argv[])
 
 
 
-/*
 int alloc_array (int **m, int N) {
 
   *m = (int*) malloc (N*sizeof(int));
@@ -185,7 +184,7 @@ int alloc_array (int **m, int N) {
 
 int main(int argc, char const *argv[])
 {
-  int *m;
+  int *m, *n;
   int *ptr, *teste;
   int i;
   int nElems = 200;
@@ -193,20 +192,26 @@ int main(int argc, char const *argv[])
   int nBuckets = 10;
 
   alloc_array(&m, nElems);
+  alloc_array(&n, nElems);
+
 
   for (i=0 , ptr = m ; i<nElems ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
     *ptr = (int) rand() % maxElem;
 	}
 
+
   bucketSortParallel(m, nElems, maxElem, nBuckets);
 
-  for (i=0 , ptr = m ; i<nElems ; i++ , ptr++) {
+  memcpy(n, m, nElems*sizeof(int));
+
+
+  for (i=0 ; i<nElems ; i++ , m++, n++) {
    // printf("%i %i\n", *ptr, m);
-    printf("%i - ",*ptr );
+    printf("%i - %i\n ",*m,*n );
 	}
   printf ("\n");
 
   return 0;
 }
-*/
+
