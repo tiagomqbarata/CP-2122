@@ -42,7 +42,7 @@ void bucketSort(int arr[], int size) {
 
   // Sort the elements of each bucket
   for (i = 0; i < NBUCKET; ++i) {
-    buckets[i] = InsertionSort(buckets[i]);
+ //   buckets[i] = InsertionSort(buckets[i]);
   }
 /*
   // Put sorted elements on arr
