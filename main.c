@@ -178,7 +178,7 @@ int init_array (int *m, int N, int max) {
 	int *ptr;
 
 	if (!alloc_array (m, N)) return 0;
-  printf("%d", sizeof(m))
+  printf("%d", sizeof(m));
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
   //  *ptr = (int) rand() % max;
