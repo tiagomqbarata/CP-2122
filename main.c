@@ -122,6 +122,21 @@ fprintf(stdout, "0");
   }
 #endif
 
+
+
+
+  int *ptr;
+  printf("/n/n/n");
+  for (i=0 , ptr = (a) ; i<m_size ; i+=152 , ptr+=152) {
+    printf("%d - ", *ptr);
+	}
+  printf("/n/n/n");
+
+
+
+
+
+
   free_array (&a);
 
   printf ("\nThat's all, folks\n");
