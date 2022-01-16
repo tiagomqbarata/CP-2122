@@ -48,7 +48,7 @@ void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
     if(lastIndex[i])
       quickSort(buckets[i], 0, lastIndex[i]-1);
     
-    
+
   // Put sorted elements on arr
   for (j = 0, i = 0; i < nBuckets; ++i) 
     for(k = 0; k < lastIndex[i]; k++ )
@@ -139,7 +139,7 @@ int main(int argc, char const *argv[])
 
 
 
-
+/*
 int alloc_array (int **m, int N) {
 
   *m = (int*) malloc (N*sizeof(int));
@@ -173,3 +173,4 @@ int main(int argc, char const *argv[])
   return 0;
 }
 
+*/
