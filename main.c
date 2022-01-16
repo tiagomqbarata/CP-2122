@@ -75,7 +75,6 @@ int free_array (int *m) {
 int main (int argc, char *argv[]) {
 fprintf(stdout, "0");
   int m_size, total_elements, max_random, i, run;
-  int a[100];
 
   if (!verify_command_line (argc, argv, &m_size, &max_random)) {
 	  return 0;
@@ -96,13 +95,10 @@ fprintf(stdout, "4");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  bucketSort (a, m_size);
   fprintf (stdout, "done!\n");
 fprintf(stdout, "5");
 
-   bucketSort (a, m_size);
 
-  free_array (a);
 
   printf ("\nThat's all, folks\n");
   return 1;
