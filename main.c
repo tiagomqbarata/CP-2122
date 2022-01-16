@@ -73,37 +73,5 @@ int free_array (int *m) {
 }
 
 int main (int argc, char *argv[]) {
-fprintf(stdout, "0");
-  int m_size, total_elements, max_random, i, run;
-  int *a = NULL;
-
-  if (!verify_command_line (argc, argv, &m_size, &max_random)) {
-	  return 0;
-  }
-  total_elements = m_size;
-printf("2");
-
-  // create an instance for random function, with a constant seed
-  srand(18);
-printf("3");
-
-  // ini A array
-  fprintf (stdout, "Initializing Array A...");
-  if (!init_array (a, total_elements, max_random)) return 0;
-  fprintf (stdout, "done!\n");
-
-printf("4");
-
-  // warmup caches
-  fprintf (stdout, "Warming up caches...");
-  bucketSort (a, m_size);
-  fprintf (stdout, "done!\n");
-printf("5");
-
-   bucketSort (a, m_size);
-
-  free_array (a);
-
-  printf ("\nThat's all, folks\n");
-  return 1;
+fprintf(stdout, "DEU");
 }
