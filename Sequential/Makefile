@@ -4,7 +4,7 @@ SRC = bucket-sort.c ../main.c
 
 OBJ = $(SRC:.cpp=.o)
 
-OUT = bucket-sort
+OUT = bucket-sort_sequential
 
 # include directories
 INCLUDES = -I. 
