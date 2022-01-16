@@ -12,8 +12,8 @@ static int init_array (int **m, int m_size, int max);
 static int free_array (int **m);
 static void print_usage (char *msg);
 
-#define NUM_EVENTS 5
-int Events[NUM_EVENTS] = { PAPI_TOT_CYC, PAPI_TOT_INS, PAPI_L1_DCM, PAPI_L2_DCM, PAPI_L1_TCM};
+#define NUM_EVENTS 4
+int Events[NUM_EVENTS] = { PAPI_TOT_CYC, PAPI_TOT_INS, PAPI_L1_DCM, PAPI_L2_DCM};
 
 // PAPI counters' values
 long long values[NUM_EVENTS], min_values[NUM_EVENTS];
