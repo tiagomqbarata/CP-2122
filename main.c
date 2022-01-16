@@ -24,14 +24,14 @@ long long values[NUM_EVENTS], min_values[NUM_EVENTS];
 int main (int argc, char *argv[]) {
 fprintf(stdout, "0");
   long long start_usec, end_usec, elapsed_usec, min_usec=0L;
-  int m_size, total_elements, max_random, i, run, buckets;
-  int *a;
+  int m_size, max_random, i, run, buckets;
+  int *a, *ptr;
   int num_hwcntrs = 0;
 
   if (!verify_command_line (argc, argv, &m_size, &max_random, &buckets)) {
 	  return 0;
   }
-  total_elements = m_size;
+  m_size = m_size;
 
   fprintf (stdout, "\nSetting up PAPI...");
   // Initialize PAPI 
@@ -57,17 +57,22 @@ fprintf(stdout, "0");
 
   // ini A array
   fprintf (stdout, "Initializing Array A...");
-  if (!init_array (&a, total_elements, max_random)) return 0;
+  if (!init_array (&a, m_size, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
+  int alloc_array (&ptr, m_size);
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
+  memcpy(ptr, a, m_size);
   bucketSort (a, m_size, buckets);
+  memcpy(a, ptr, m_size);
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
-   fprintf (stderr, "\nrun=%d", run);
+    memcpy(ptr, a, m_size);
+
+    fprintf (stderr, "\nrun=%d", run);
 
    // use PAPI timer (usecs) - note that this is wall clock time
    // for process time running in user mode -> PAPI_get_virt_usec()
@@ -99,6 +104,8 @@ fprintf(stdout, "0");
       min_usec = elapsed_usec;
       for (i=0 ; i< NUM_EVENTS ; i++) min_values[i] = values [i];
    }
+     memcpy(a, ptr, m_size);
+
 
   } // end runs
   printf ("\nWall clock time: %lld usecs\n", min_usec);
@@ -123,27 +130,13 @@ fprintf(stdout, "0");
 #endif
 
 
-
-
-  int *ptr;
-  printf("/n/n/n");
-  for (i=0 , ptr = (a) ; i<m_size ; i+=152 , ptr+=152) {
-    printf("%d - ", *ptr);
-	}
-  printf("/n/n/n");
-
-
-
-
-
-
   free_array (&a);
 
   printf ("\nThat's all, folks\n");
   return 1;
 }
 
-int verify_command_line (int argc, char *argv[], int *total_elements, int *max, int *bucket) {
+int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *bucket) {
 	int val;
 
 	if (argc!=4) {
@@ -158,7 +151,7 @@ int verify_command_line (int argc, char *argv[], int *total_elements, int *max, 
 		return 0;
 	}
 	else {
-		*total_elements = val;// size of array
+		*m_size = val;// size of array
 	}
 		
 	val = atoi (argv[2]);
