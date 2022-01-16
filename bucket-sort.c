@@ -2,109 +2,114 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
-struct Node {
-  int data;
-  struct Node *next;
-};
-
-struct Node *InsertionSort(struct Node *list);
-void print(int arr[], int size);
-void printBuckets(struct Node *list);
-int getBucketIndex(int value, int INTERVAL);
+void swap(int* a, int* b) ;
+int partition (int arr[], int low, int high) ;
+void quickSort(int arr[], int low, int high) ;
+int getBucketIndex(int value, int interval) ;
 
 // Sorting function
-void bucketSort(int arr[], int size, int NBUCKET) {
+void bucketSort(int arr[], int size, int nBuckets) {
 
   int i, j;
-  struct Node **buckets;
-  int INTERVAL = size/NBUCKET;
+  int interval = size/nBuckets;
+  int lastIndex[size];
 
+  memset( lastIndex, 0, size*sizeof(int) );
 
-  // Create buckets and allocate memory size
-  buckets = (struct Node **)malloc(sizeof(struct Node *) * NBUCKET);
+  int **buckets = (int**) malloc(nBuckets * sizeof(int*));
 
-  // Initialize empty buckets
-  for (i = 0; i < NBUCKET; ++i) {
-    buckets[i] = NULL;
+  for (i = 0; i < nBuckets; ++i) {
+    buckets[i] = (int*)malloc(size*sizeof(int));
   }
 
-  // Fill the buckets with respective elements
   for (i = 0; i < size; ++i) {
-    struct Node *current;
-    int pos = getBucketIndex(arr[i], INTERVAL);
-    current = (struct Node *)malloc(sizeof(struct Node));
-    current->data = arr[i];
-    current->next = buckets[pos];
-    buckets[pos] = current;
+    int pos = getBucketIndex(arr[i], interval);
+
+    buckets[pos][lastIndex[pos]++] = arr[i];
+  }
+
+  for(i=0; i<nBuckets; i++){
+    printf("Brucket %d: ", i);
+    for(j = 0; j < lastIndex[i]; j++){
+      printf("%d - ", buckets[i][j]);
+    }
+    printf("nElems: %d \n\n", lastIndex[i]);
   }
 
   // Sort the elements of each bucket
-  for (i = 0; i < NBUCKET; ++i) {
-    buckets[i] = InsertionSort(buckets[i]);
+  for (i = 0; i < nBuckets; ++i) {
+    if(lastIndex[i]){
+      quickSort(buckets[i], 0, lastIndex[i]-1);
+    }
   }
 
   // Put sorted elements on arr
-  for (j = 0, i = 0; i < NBUCKET; ++i) {
-    struct Node *node;
-    node = buckets[i];
-    while (node) {
-      arr[j++] = node->data;
-      node = node->next;
-    }
+  for (j = 0, i = 0; i < nBuckets; ++i) {
+    for(int k = 0; k < lastIndex[i]; k++)
+      arr[j++] = buckets[i][k];
   }
 
   return;
 }
 
-// Function to sort the elements of each bucket
-struct Node *InsertionSort(struct Node *list) {
-  
-  struct Node *k, *nodeList;
-  if (list == 0 || list->next == 0) {
-    return list;
-  }
-
-  nodeList = list;
-  k = list->next;
-  nodeList->next = 0;
-  while (k != 0) {
-    struct Node *ptr;
-    if (nodeList->data > k->data) {
-      struct Node *tmp;
-      tmp = k;
-      k = k->next;
-      tmp->next = nodeList;
-      nodeList = tmp;
-      continue;
-    }
-
-    for (ptr = nodeList; ptr->next != 0; ptr = ptr->next) {
-      if (ptr->next->data > k->data)
-        break;
-    }
-
-    if (ptr->next != 0) {
-      struct Node *tmp;
-      tmp = k;
-      k = k->next;
-      tmp->next = ptr->next;
-      ptr->next = tmp;
-      continue;
-    } else {
-      ptr->next = k;
-      k = k->next;
-      ptr->next->next = 0;
-      continue;
-    }
-  }
-  return nodeList;
+int getBucketIndex(int value, int interval) {
+  return value / interval;
 }
 
-int getBucketIndex(int value, int INTERVAL) {
-  return value / INTERVAL;
-}
+// A utility function to swap two elements 
+void swap(int* a, int* b) 
+{ 
+    int t = *a; 
+    *a = *b; 
+    *b = t; 
+} 
+
+/* This function takes last element as pivot, places 
+the pivot element at its correct position in sorted 
+array, and places all smaller (smaller than pivot) 
+to left of pivot and all greater elements to right 
+of pivot */
+int partition (int arr[], int low, int high) 
+{ 
+    int pivot = arr[high]; // pivot 
+    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+
+    for (int j = low; j <= high - 1; j++) 
+    { 
+        // If current element is smaller than the pivot 
+        if (arr[j] < pivot) 
+        { 
+            i++; // increment index of smaller element 
+            swap(&arr[i], &arr[j]); 
+        } 
+    } 
+    swap(&arr[i + 1], &arr[high]); 
+    return (i + 1); 
+} 
+
+/* The main function that implements QuickSort 
+arr[] --> Array to be sorted, 
+low --> Starting index, 
+high --> Ending index */
+void quickSort(int arr[], int low, int high) 
+{ 
+    if (low < high) 
+    { 
+        /* pi is partitioning index, arr[p] is now 
+        at right place */
+        int pi = partition(arr, low, high); 
+
+        // Separately sort elements before 
+        // partition and after partition 
+        quickSort(arr, low, pi - 1); 
+        quickSort(arr, pi + 1, high); 
+    } 
+} 
+
+
 
 /*
 int main(int argc, char const *argv[])
@@ -130,10 +135,10 @@ int main(int argc, char const *argv[])
 
 
 
-/*
 
 
-int alloc_array (int *m, int N) {
+
+int alloc_array (int **m, int N) {
 
   *m = (int*) malloc (N*sizeof(int));
 
@@ -160,4 +165,4 @@ int main(int argc, char const *argv[])
 	}
   return 0;
 }
-*/
+

@@ -1,2 +1,2 @@
-void bucketSort(int arr[], int size, int NBUCKET);
+void bucketSort(int arr[], int size, int nBuckets);
 
