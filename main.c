@@ -60,7 +60,7 @@ fprintf(stdout, "0");
   if (!init_array (&a, m_size, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
-  int alloc_array (&ptr, m_size);
+  alloc_array (&ptr, m_size);
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
