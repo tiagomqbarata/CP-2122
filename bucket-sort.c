@@ -66,7 +66,7 @@ struct Node *InsertionSort(struct Node *list) {
   if (list == 0 || list->next == 0) {
     return list;
   }
-/*
+
   nodeList = list;
   k = list->next;
   nodeList->next = 0;
@@ -80,7 +80,7 @@ struct Node *InsertionSort(struct Node *list) {
       nodeList = tmp;
       continue;
     }
-
+/*
     for (ptr = nodeList; ptr->next != 0; ptr = ptr->next) {
       if (ptr->next->data > k->data)
         break;
@@ -98,10 +98,9 @@ struct Node *InsertionSort(struct Node *list) {
       k = k->next;
       ptr->next->next = 0;
       continue;
-    }
+    }*/
   }
   return nodeList;
-  */ return NULL;
 }
 
 int getBucketIndex(int value) {
