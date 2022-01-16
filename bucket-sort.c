@@ -75,7 +75,7 @@ of pivot */
 int partition (int arr[], int low, int high) 
 { 
     int pivot = arr[high]; // pivot 
-    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+    int i = (low - 1), j; // Index of smaller element and indicates the right position of pivot found so far
 
     for ( j = low; j <= high - 1; j++){ 
         // If current element is smaller than the pivot 
