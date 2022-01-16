@@ -168,7 +168,7 @@ void print_usage (char *msg) {
 
 int alloc_matrix (int *m, int N) {
 
-	*m = (int*) malloc (N*sizeof(int));
+//	*m = (int*) malloc (N*sizeof(int));
 	if (!(*m)) {
 		print_usage ((char *)"Could not allocate memory for array!");
 		return 0;
@@ -184,7 +184,7 @@ int init_array (int *m, int N, int max) {
  	int i;
 	int *ptr;
 
-//	if (!alloc_matrix (m, N)) return 0;
+	if (!alloc_matrix (m, N)) return 0;
 //	for (i=0 , ptr = m ; i<N ; i++ , ptr++) {
 		//*ptr = my_rand(max);
 //	}
