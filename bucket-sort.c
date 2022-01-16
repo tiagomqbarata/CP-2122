@@ -39,12 +39,12 @@ void bucketSort(int arr[], int size) {
     current->next = buckets[pos];
     buckets[pos] = current;
   }
-/*
+
   // Sort the elements of each bucket
   for (i = 0; i < NBUCKET; ++i) {
     buckets[i] = InsertionSort(buckets[i]);
   }
-
+/*
   // Put sorted elements on arr
   for (j = 0, i = 0; i < NBUCKET; ++i) {
     struct Node *node;
