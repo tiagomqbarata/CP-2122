@@ -16,9 +16,6 @@ void print(int arr[], int size);
 void printBuckets(struct Node *list);
 int getBucketIndex(int value);
 
-
-
-
 // Sorting function
 void bucketSort(int arr[], int size) {
 
@@ -109,28 +106,13 @@ int getBucketIndex(int value) {
   return value / INTERVAL;
 }
 
-void print(int ar[], int size) {
-  int i;
-  for (i = 0; i < size; ++i) {
-    printf("%d ", ar[i]);
-  }
-  printf("\n");
-}
-
-// Print buckets
-void printBuckets(struct Node *list) {
-  struct Node *cur = list;
-  while (cur) {
-    printf("%d ", cur->data);
-    cur = cur->next;
-  }
-}
-
 /*
 int main(int argc, char const *argv[])
 {
   int size = 100, max = 100;
-  int a[size];
+  int *a;
+
+
 
   for(int i = 0; i < size; i++){
     a[i] = rand() % max;
