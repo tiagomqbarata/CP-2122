@@ -39,14 +39,14 @@ void bucketSort(int arr[], int size) {
     current->next = buckets[pos];
     buckets[pos] = current;
   }
-/*
+
   // Print the buckets along with their elements
   for (i = 0; i < NBUCKET; i++) {
     printf("Bucket[%d]: ", i);
     printBuckets(buckets[i]);
     printf("\n");
   }
-
+/*
   // Sort the elements of each bucket
   for (i = 0; i < NBUCKET; ++i) {
     buckets[i] = InsertionSort(buckets[i]);
