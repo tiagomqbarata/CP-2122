@@ -11,7 +11,6 @@ struct Node {
   struct Node *next;
 };
 
-void bucketSort(int arr[], int size);
 struct Node *InsertionSort(struct Node *list);
 void print(int arr[], int size);
 void printBuckets(struct Node *list);
