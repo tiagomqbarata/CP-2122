@@ -21,7 +21,7 @@ void bucketSort(int arr[], int size) {
 
   int i, j;
   struct Node **buckets;
-
+/*
   // Create buckets and allocate memory size
   buckets = (struct Node **)malloc(sizeof(struct Node *) * NBUCKET);
 
@@ -71,7 +71,7 @@ void bucketSort(int arr[], int size) {
   }
 
   return;
-  
+  */
 }
 
 // Function to sort the elements of each bucket
