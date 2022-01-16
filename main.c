@@ -65,7 +65,6 @@ fprintf(stdout, "0");
   fprintf (stdout, "Warming up caches...");
   bucketSort (a, m_size);
   fprintf (stdout, "done!\n");
-printf("5");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
    fprintf (stderr, "\nrun=%d", run);

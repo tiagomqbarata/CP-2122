@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NARRAY 7   // Array size
 #define NBUCKET 6  // Number of buckets
 #define INTERVAL 10  // Each bucket capacity
 
@@ -14,12 +13,13 @@ struct Node {
 
 void bucketSort(int arr[], int size);
 struct Node *InsertionSort(struct Node *list);
-void print(int arr[]);
+void print(int arr[], int size);
 void printBuckets(struct Node *list);
 int getBucketIndex(int value);
 
 // Sorting function
 void bucketSort(int arr[], int size) {
+/*
   int i, j;
   struct Node **buckets;
 
@@ -72,6 +72,7 @@ void bucketSort(int arr[], int size) {
   }
 
   return;
+  */
 }
 
 // Function to sort the elements of each bucket
@@ -121,9 +122,9 @@ int getBucketIndex(int value) {
   return value / INTERVAL;
 }
 
-void print(int ar[]) {
+void print(int ar[], int size) {
   int i;
-  for (i = 0; i < NARRAY; ++i) {
+  for (i = 0; i < size; ++i) {
     printf("%d ", ar[i]);
   }
   printf("\n");
