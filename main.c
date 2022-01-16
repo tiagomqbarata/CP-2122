@@ -57,7 +57,7 @@ fprintf(stdout, "0");
 
   // ini A array
   fprintf (stdout, "Initializing Array A...");
-  if (!init_array (a, total_elements, max_random)) return 0;
+  if (!init_array (&a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
   for (i=0 ; i<total_elements ; i++ , a++) {
@@ -68,7 +68,7 @@ fprintf(stdout, "0");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  //bucketSort (&a, m_size);
+  bucketSort (a, m_size);
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
@@ -168,29 +168,29 @@ void print_usage (char *msg) {
 	fprintf (stderr, "Usage:\tgemm <matrix size> <version>\n\n");
 }
 
-int alloc_array (int *m, int N) {
+int alloc_array (int **m, int N) {
 
   *m = (int*) malloc (N*sizeof(int));
-	if (!(m)) {
+	if (!(*m)) {
 		print_usage ((char *)"Could not allocate memory for array!");
 		return 0;
 	}
 	return 1;
 }
 
-int init_array (int *m, int N, int max) {
+int init_array (int **m, int N, int max) {
  	int i;
 	int *ptr;
 
-	if (!alloc_array (&m, N)) return 0;
-	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
+	if (!alloc_array (m, N)) return 0;
+	for (i=0 , ptr = (*m) ; i<N ; i++ , ptr++) {
     *ptr = rand() % max;
 	}
 	return 1;
 } 
 
-int free_array (int *m) {
-  free (m);
-  m = NULL;
+int free_array (int **m) {
+  free (*m);
+  *m = NULL;
   return 1;
 }
