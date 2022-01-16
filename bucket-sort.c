@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define BLOCKSIZE 16
 
 void swap(int* a, int* b) ;
 int partition (int arr[], int low, int high) ;
@@ -47,12 +48,12 @@ void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
     if(lastIndex[i])
       quickSort(buckets[i], 0, lastIndex[i]-1);
     
-
+    
   // Put sorted elements on arr
   for (j = 0, i = 0; i < nBuckets; ++i) 
-    for(k = 0; k < lastIndex[i]; k++)
+    for(k = 0; k < lastIndex[i]; k++ )
       arr[j++] = buckets[i][k];
-  
+
 
   return;
 }
@@ -135,7 +136,7 @@ int main(int argc, char const *argv[])
 */ 
 
 
-/*
+
 
 
 
@@ -172,4 +173,3 @@ int main(int argc, char const *argv[])
   return 0;
 }
 
-*/
