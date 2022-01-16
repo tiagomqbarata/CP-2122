@@ -60,11 +60,6 @@ fprintf(stdout, "0");
   if (!init_array (&a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
-  for (i=0 ; i<total_elements ; i++ , a++) {
-    // printf("%i %i\n", *ptr, m);
-      printf("%i - ", *a );
-    }
-
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
