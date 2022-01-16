@@ -165,7 +165,7 @@ void print_usage (char *msg) {
 
 int alloc_array (int *m, int N) {
 
-m = (int*) malloc (N*sizeof(int));
+  m = (int*) malloc (N*sizeof(int));
 	if (!(m)) {
 		print_usage ((char *)"Could not allocate memory for array!");
 		return 0;
@@ -179,8 +179,8 @@ int init_array (int *m, int N, int max) {
 
 	if (!alloc_array (m, N)) return 0;
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
-   // printf("%i ", *ptr);
-    *ptr = rand() % max;
+    printf("%i %i", ptr, m);
+   // *ptr = rand() % max;
 	}
 	return 1;
 } 
