@@ -1,5 +1,6 @@
 # source files.
-SRC = bucket-sort.c main.c
+# source files.
+SRC = bucket-sort.c ../main.c
 
 OBJ = $(SRC:.cpp=.o)
 
