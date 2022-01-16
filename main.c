@@ -7,9 +7,9 @@
 #include "bucket-sort.h"
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *version);
-static int alloc_array (int *m, int N);
-static int init_array (int *m, int N, int max);
-static int free_array (int *m);
+static int alloc_matrix (float **m, int m_size);
+static int ini_matrix (float **m, int m_size);
+static int free_matrix (float **m);
 static void print_usage (char *msg);
 
 #define NUM_EVENTS 4
