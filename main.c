@@ -14,6 +14,8 @@ static int init_array (int **m, int m_size, int max);
 static int free_array (int **m);
 static void print_usage (char *msg);
 
+void (*func)(int *, int, int, int);
+
 #define NUM_EVENTS 4
 int Events[NUM_EVENTS] = { PAPI_TOT_CYC, PAPI_TOT_INS, PAPI_L1_DCM, PAPI_L2_DCM};
 
@@ -67,7 +69,7 @@ fprintf(stdout, "0");
   // warmup caches
   fprintf (stdout, "Warming up caches...");
   memcpy(ptr, a, m_size);
-  bucketSort (a, m_size, max_random, buckets);
+  func (a, m_size, max_random, buckets);
   memcpy(a, ptr, m_size);
   fprintf (stdout, "done!\n");
 
@@ -88,7 +90,7 @@ fprintf(stdout, "0");
      return 0;
    }
 
-   bucketSort (a, m_size, max_random, buckets);
+   func (a, m_size, max_random, buckets);
 
 
    /* Stop counting events */
@@ -141,7 +143,7 @@ fprintf(stdout, "0");
 int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *bucket) {
 	int val;
 
-	if (argc!=4) {
+	if (argc!=5) {
 		print_usage ((char *)"Exactly 2 arguments are required!");
 		return 0;
 	}
@@ -173,7 +175,20 @@ int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *buc
 	}
 	else 
 		*bucket = val;
-		
+
+  val = atoi (argv[4])  
+	if (val <= 0) {
+		print_usage ((char *)"The number of elem max must be a positive integer!");
+		return 0;
+	}
+	else 
+		switch (val)
+    {
+    case 1: func = &bucketSort;
+            break;
+    case 2: func = &bucketSortParallel;
+            break;
+    }
 	return 1;
 }
 

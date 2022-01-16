@@ -9,10 +9,11 @@ void quickSort(int *arr, int size) ;
 void partition_internel(int *arr, int *i, int *j);
 void quickSort_internel(int *arr, int left, int right) ;
 int getBucketIndex(int value, int interval) ;
+int position(int lastIndex[], int i);
 
 
 // Sorting function
-void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
+void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
   #pragma omp parallel num_threads(16)
   int i, j, k;
   int interval = maxRandomNumber/nBuckets;
