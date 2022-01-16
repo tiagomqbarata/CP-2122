@@ -61,12 +61,12 @@ void bucketSort(int arr[], int size) {
 
 // Function to sort the elements of each bucket
 struct Node *InsertionSort(struct Node *list) {
-  /*
+  
   struct Node *k, *nodeList;
   if (list == 0 || list->next == 0) {
     return list;
   }
-
+/*
   nodeList = list;
   k = list->next;
   nodeList->next = 0;
