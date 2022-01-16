@@ -175,8 +175,8 @@ int main(int argc, char const *argv[])
 
 
 
-/*
 
+/*
 int alloc_array (int **m, int N) {
 
   *m = (int*) malloc (N*sizeof(int));
@@ -209,5 +209,4 @@ int main(int argc, char const *argv[])
 
   return 0;
 }
-
 */
