@@ -180,7 +180,7 @@ int init_array (int *m, int N, int max) {
 	if (!alloc_array (m, N)) return 0;
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
    // printf("%i ", *ptr);
-    //*ptr = rand() % max;
+    *ptr = rand() % max;
 	}
 	return 1;
 } 
