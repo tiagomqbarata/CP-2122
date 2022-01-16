@@ -5,6 +5,8 @@
 #include "papi.h"
 
 #include "bucket-sort.h"
+#include "bucket-sort_parallel.h"
+
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *bucket);
 static int alloc_array (int **m, int m_size);
