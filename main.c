@@ -81,7 +81,7 @@ fprintf(stdout, "0");
 	  return 0;
   }
   total_elements = m_size;
-fprintf(stdout, "2");
+fprintf(stdout, "22");
 
   // create an instance for random function, with a constant seed
   srand(18);
