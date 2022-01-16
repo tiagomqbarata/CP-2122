@@ -186,8 +186,7 @@ int init_array (int *m, int N, int max) {
 
 	if (!alloc_array (m, N)) return 0;
 	for (i=0 , ptr = m ; i<N ; i++ , ptr++) {
-    fprintf(stdout,"%d", rand() % max)
-	//	*ptr = my_rand(max);
+    *ptr = my_rand(max);
 	}
 	return 1;
 } 
