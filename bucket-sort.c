@@ -18,7 +18,7 @@ int getBucketIndex(int value);
 
 // Sorting function
 void bucketSort(int arr[], int size) {
-/*
+
   int i, j;
   struct Node **buckets;
 
@@ -71,7 +71,7 @@ void bucketSort(int arr[], int size) {
   }
 
   return;
-  */
+  
 }
 
 // Function to sort the elements of each bucket
