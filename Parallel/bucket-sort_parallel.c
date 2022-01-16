@@ -59,7 +59,6 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   #pragma omp parallel for
     // Put sorted elements on arr
     for (i = 0; i < nBuckets; ++i) 
-      #pragma omp task 
       j = position(lastIndex, i);
       for(k = 0; k < lastIndex[i]; k++ )
         arr[j++] = buckets[i][k];
