@@ -23,7 +23,7 @@ long long values[NUM_EVENTS], min_values[NUM_EVENTS];
 #define NUM_RUNS 5
 
 int main (int argc, char *argv[]) {
-printf("0");
+fprintf(stdout, "0");
   long long start_usec, end_usec, elapsed_usec, min_usec=0L;
   int m_size, total_elements, max_random, i, run;
   int *a;
