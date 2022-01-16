@@ -101,7 +101,7 @@ struct Node *InsertionSort(struct Node *list) {
     }
   }
   return nodeList;
-  */ return null;
+  */ return NULL;
 }
 
 int getBucketIndex(int value) {
