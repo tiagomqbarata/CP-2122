@@ -21,7 +21,7 @@ void bucketSort(int arr[], int size) {
 
   int i, j;
   struct Node **buckets;
-/*
+
   // Create buckets and allocate memory size
   buckets = (struct Node **)malloc(sizeof(struct Node *) * NBUCKET);
 
@@ -29,7 +29,7 @@ void bucketSort(int arr[], int size) {
   for (i = 0; i < NBUCKET; ++i) {
     buckets[i] = NULL;
   }
-
+/*
   // Fill the buckets with respective elements
   for (i = 0; i < size; ++i) {
     struct Node *current;
