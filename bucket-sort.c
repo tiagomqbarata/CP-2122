@@ -11,26 +11,28 @@ void quickSort(int arr[], int low, int high) ;
 int getBucketIndex(int value, int interval) ;
 
 // Sorting function
-void bucketSort(int arr[], int size, int max, int nBuckets) {
+void bucketSort(int arr[], int nElementos, int maxRandomNumber, int nBuckets) {
 
   int i, j, k;
-  int interval = max/nBuckets;
+  int interval = maxRandomNumber/nBuckets;
   int lastIndex[nBuckets];
 
-  memset( lastIndex, 0, size*sizeof(int) );
+  // Inicialize lastIndex
+  memset( lastIndex, 0, nBuckets*sizeof(int) );
 
+  // Inicialize buckets and reserved space
   int **buckets = (int**) malloc(nBuckets * sizeof(int*));
-
   for (i = 0; i < nBuckets; ++i) {
-    buckets[i] = (int*)malloc(size*sizeof(int));
+    buckets[i] = (int*)malloc(nElementos*sizeof(int));
   }
 
-  for (i = 0; i < size; ++i) {
+  // Separate numbers by buckets
+  for (i = 0; i < nElementos; ++i) {
     int pos = getBucketIndex(arr[i], interval);
-
     buckets[pos][lastIndex[pos]++] = arr[i];
   }
 
+/*
   for(i=0; i<nBuckets; i++){
     printf("Brucket %d: ", i);
     for(j = 0; j < lastIndex[i]; j++){
@@ -38,19 +40,19 @@ void bucketSort(int arr[], int size, int max, int nBuckets) {
     }
     printf("nElems: %d \n\n", lastIndex[i]);
   }
+*/
 
   // Sort the elements of each bucket
-  for (i = 0; i < nBuckets; ++i) {
-    if(lastIndex[i]){
+  for (i = 0; i < nBuckets; ++i) 
+    if(lastIndex[i])
       quickSort(buckets[i], 0, lastIndex[i]-1);
-    }
-  }
+    
 
   // Put sorted elements on arr
-  for (j = 0, i = 0; i < nBuckets; ++i) {
+  for (j = 0, i = 0; i < nBuckets; ++i) 
     for(k = 0; k < lastIndex[i]; k++)
       arr[j++] = buckets[i][k];
-  }
+  
 
   return;
 }
@@ -113,29 +115,29 @@ void quickSort(int arr[], int low, int high)
 /*
 int main(int argc, char const *argv[])
 {
-  int size = 100, max = 100;
+  int nElementos = 100, maxRandomNumber = 100;
   int *a;
 
 
 
-  for(int i = 0; i < size; i++){
-    a[i] = rand() % max;
+  for(int i = 0; i < nElementos; i++){
+    a[i] = rand() % maxRandomNumber;
     printf("%d - ", a[i]);
   }
 
 
-  bucketSort(a,size);
+  bucketSort(a,nElementos);
   printf("\n\n\n ");
-  for(int i = 0; i < size; i++){
+  for(int i = 0; i < nElementos; i++){
     printf("%d - ", a[i]);
   }
 }
 */ 
 
 
-
-
 /*
+
+
 
 int alloc_array (int **m, int N) {
 
@@ -148,20 +150,25 @@ int main(int argc, char const *argv[])
   int *m;
   int *ptr, *teste;
   int i;
+  int nElems = 200;
+  int maxElem = 1000;
+  int nBuckets = 10;
 
-  alloc_array(&m, 100);
+  alloc_array(&m, nElems);
 
-  for (i=0 , ptr = m ; i<100 ; i++ , ptr++) {
+  for (i=0 , ptr = m ; i<nElems ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
-    *ptr = (int) rand() % 100;
+    *ptr = (int) rand() % maxElem;
 	}
 
-  bucketSort(m, 100,10);
+  bucketSort(m, nElems, maxElem, nBuckets);
 
   for (i=0 , ptr = m ; i<100 ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
     printf("%i - ",*ptr );
 	}
+  printf ("\n");
+
   return 0;
 }
 
