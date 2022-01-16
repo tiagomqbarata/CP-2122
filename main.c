@@ -6,7 +6,7 @@
 
 #include "bucket-sort.h"
 
-static int verify_command_line (int argc, char *argv[], int *m_size, int *version);
+static int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *bucket);
 static int alloc_array (int **m, int m_size);
 static int init_array (int **m, int m_size, int max);
 static int free_array (int **m);
@@ -24,11 +24,11 @@ long long values[NUM_EVENTS], min_values[NUM_EVENTS];
 int main (int argc, char *argv[]) {
 fprintf(stdout, "0");
   long long start_usec, end_usec, elapsed_usec, min_usec=0L;
-  int m_size, total_elements, max_random, i, run;
+  int m_size, total_elements, max_random, i, run, buckets;
   int *a;
   int num_hwcntrs = 0;
 
-  if (!verify_command_line (argc, argv, &m_size, &max_random)) {
+  if (!verify_command_line (argc, argv, &m_size, &max_random, &buckets)) {
 	  return 0;
   }
   total_elements = m_size;
@@ -128,10 +128,10 @@ fprintf(stdout, "0");
   return 1;
 }
 
-int verify_command_line (int argc, char *argv[], int *total_elements, int *version) {
+int verify_command_line (int argc, char *argv[], int *total_elements, int *max, int *bucket) {
 	int val;
 
-	if (argc!=3) {
+	if (argc!=4) {
 		print_usage ((char *)"Exactly 2 arguments are required!");
 		return 0;
 	}
@@ -154,6 +154,15 @@ int verify_command_line (int argc, char *argv[], int *total_elements, int *versi
 	}
 	else 
 		*version = val;
+
+  val = atoi (argv[3]);
+
+	if (val <= 0) {
+		print_usage ((char *)"The number of elem max must be a positive integer!");
+		return 0;
+	}
+	else 
+		*bucket = val;
 		
 	return 1;
 }
