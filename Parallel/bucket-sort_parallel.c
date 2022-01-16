@@ -159,7 +159,7 @@ int main(int argc, char const *argv[])
 
 
 
-
+/*
 
 
 int alloc_array (int **m, int N) {
@@ -195,3 +195,4 @@ int main(int argc, char const *argv[])
   return 0;
 }
 
+*/
