@@ -176,7 +176,7 @@ int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *buc
 	else 
 		*bucket = val;
 
-  val = atoi (argv[4])  
+  val = atoi (argv[4])  ;
 	if (val <= 0) {
 		print_usage ((char *)"The number of elem max must be a positive integer!");
 		return 0;
