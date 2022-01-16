@@ -7,7 +7,7 @@
 #include "bucket-sort.h"
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *version);
-static int alloc_matrix (int *m, int N);
+static int alloc_array (int *m, int N);
 static int init_array (int *m, int N, int max);
 static int free_array (int *m);
 static void print_usage (char *msg);
@@ -166,7 +166,7 @@ void print_usage (char *msg) {
 	fprintf (stderr, "Usage:\tgemm <matrix size> <version>\n\n");
 }
 
-int alloc_matrix (int *m, int N) {
+int alloc_array (int *m, int N) {
 
 m = (int*) malloc (N*sizeof(int));
 	if (!(m)) {
@@ -184,9 +184,9 @@ int init_array (int *m, int N, int max) {
  	int i;
 	int *ptr;
 
-	if (!alloc_matrix (m, N)) return 0;
-	for (i=0 , ptr = (*m) ; i<N ; i++ , ptr++) {
-		*ptr = my_rand(max);
+	if (!alloc_array (m, N)) return 0;
+	for (i=0 , ptr = m ; i<N ; i++ , ptr++) {
+	//	*ptr = my_rand(max);
 	}
 	return 1;
 } 
