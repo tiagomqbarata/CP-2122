@@ -81,7 +81,7 @@ fprintf(stdout, "0");
      return 0;
    }
 
-  // bucketSort (a, m_size);
+   bucketSort (a, m_size);
 
 
    /* Stop counting events */
@@ -180,7 +180,6 @@ int init_array (int *m, int N, int max) {
 	if (!alloc_array (&m, N)) return 0;
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
     *ptr = rand() % max;
-    printf("%d\n", *ptr);
 	}
 	return 1;
 } 
