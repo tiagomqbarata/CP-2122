@@ -4,8 +4,8 @@
 
 #include "papi.h"
 
-#include "bucket-sort.h"
-#include "bucket-sort_parallel.h"
+#include "Sequential/bucket-sort.h"
+#include "Parallel/bucket-sort_parallel.h"
 
 
 static int verify_command_line (int argc, char *argv[], int *m_size, int *max, int *bucket);
