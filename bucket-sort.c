@@ -126,7 +126,7 @@ void printBuckets(struct Node *list) {
   }
 }
 
-
+/*
 int main(int argc, char const *argv[])
 {
   int size = 100, max = 100;
@@ -144,3 +144,4 @@ int main(int argc, char const *argv[])
     printf("%d - ", a[i]);
   }
 }
+*/
