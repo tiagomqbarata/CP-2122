@@ -74,6 +74,7 @@ int free_array (int *m) {
 
 int main (int argc, char *argv[]) {
 fprintf(stdout, "0");
+  int m_size, total_elements, max_random, i, run;
   int *a;
 
   if (!verify_command_line (argc, argv, &m_size, &max_random)) {
