@@ -63,7 +63,7 @@ fprintf(stdout, "0");
 
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  bucketSort (a, m_size);
+ // bucketSort (a, m_size);
   fprintf (stdout, "done!\n");
 
   for (run=0 ; run < NUM_RUNS ; run++) { 
@@ -183,7 +183,7 @@ int init_array (int *m, int N, int max) {
 
 	if (!alloc_array (m, N)) return 0;
 	for (i=0 , ptr = (*m) ; i<N ; i++ , ptr++) {
-  //  *ptr = my_rand(max);
+    *ptr = my_rand(max);
 	}
 	return 1;
 } 
