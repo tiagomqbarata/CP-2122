@@ -61,11 +61,9 @@ fprintf(stdout, "0");
   if (!init_array (a, total_elements, max_random)) return 0;
   fprintf (stdout, "done!\n");
 
-printf("4");
-
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-//  bucketSort (a, m_size);
+  bucketSort (a, m_size);
   fprintf (stdout, "done!\n");
 printf("5");
 
