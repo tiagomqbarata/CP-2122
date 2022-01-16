@@ -42,7 +42,7 @@ void bucketSort(int arr[], int size) {
 
   // Sort the elements of each bucket
   for (i = 0; i < NBUCKET; ++i) {
- //   buckets[i] = InsertionSort(buckets[i]);
+    buckets[i] = InsertionSort(buckets[i]);
   }
 /*
   // Put sorted elements on arr
@@ -61,6 +61,7 @@ void bucketSort(int arr[], int size) {
 
 // Function to sort the elements of each bucket
 struct Node *InsertionSort(struct Node *list) {
+  /*
   struct Node *k, *nodeList;
   if (list == 0 || list->next == 0) {
     return list;
@@ -100,6 +101,7 @@ struct Node *InsertionSort(struct Node *list) {
     }
   }
   return nodeList;
+  */ return null;
 }
 
 int getBucketIndex(int value) {
