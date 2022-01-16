@@ -127,4 +127,31 @@ int main(int argc, char const *argv[])
   }
 }
 */ 
+/*
+int alloc_array (int *m, int N) {
 
+  *m = (int*) malloc (N*sizeof(int));
+
+}
+
+
+int main(int argc, char const *argv[])
+{
+  int *m;
+  int *ptr;
+  int i;
+
+  alloc_array(&m, 100);
+
+  for (i=0 , ptr = m ; i<100 ; i++ , ptr++) {
+   // printf("%i %i\n", *ptr, m);
+    *ptr = (int) rand() % 100;
+	}
+
+  for (i=0 , ptr = m ; i<100 ; i++ , ptr++) {
+   // printf("%i %i\n", *ptr, m);
+    printf("%i - ",*ptr );
+	}
+  return 0;
+}
+*/

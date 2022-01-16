@@ -177,11 +177,11 @@ int init_array (int *m, int N, int max) {
  	int i;
 	int *ptr;
 
-	if (!alloc_array (m, N)) return 0;
+	if (!alloc_array (&m, N)) return 0;
   printf("/n AQUIIIIIII %d/n ", m);
 	for (i=0 , ptr = (m) ; i<N ; i++ , ptr++) {
    // printf("%i %i\n", *ptr, m);
-  //  *ptr = (int) rand() % max;
+    *ptr = (int) rand() % max;
 	}
 	return 1;
 } 
