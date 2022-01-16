@@ -44,7 +44,7 @@ void bucketSort(int arr[], int size) {
   for (i = 0; i < NBUCKET; i++) {
   //  printf("Bucket[%d]: ", i);
  //   printBuckets(buckets[i]);
-    printf("\n");
+  //  printf("\n");
   }
 /*
   // Sort the elements of each bucket
