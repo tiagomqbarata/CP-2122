@@ -9,7 +9,6 @@ void swap(int* a, int* b) ;
 int partition (int arr[], int low, int high) ;
 void quickSort(int arr[], int low, int high) ;
 int getBucketIndex(int value, int interval) ;
-void print(int **buckets, int *lastIndex, int nBuckets);
 
 // Sorting function
 void bucketSort(int arr[], int size, int max, int nBuckets) {
@@ -32,7 +31,13 @@ void bucketSort(int arr[], int size, int max, int nBuckets) {
     buckets[pos][lastIndex[pos]++] = arr[i];
   }
 
-  print(buckets, lastIndex, nBuckets);
+  for(i=0; i<nBuckets; i++){
+    printf("Brucket %d: ", i);
+    for(j = 0; j < lastIndex[i]; j++){
+      printf("%d - ", buckets[i][j]);
+    }
+    printf("nElems: %d \n\n", lastIndex[i]);
+  }
 
   // Sort the elements of each bucket
   for (i = 0; i < nBuckets; ++i) {
@@ -102,18 +107,6 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, pi + 1, high); 
     } 
 } 
-
-
-void print(int **buckets, int *lastIndex, int nBuckets){
-  int i, j;
-  for(i=0; i<nBuckets; i++){
-    printf("Brucket %d: ", i);
-    for(j = 0; j < lastIndex[i]; j++){
-      printf("%d - ", buckets[i][j]);
-    }
-    printf("nElems: %d \n\n", lastIndex[i]);
-  }
-}
 
 
 /*
