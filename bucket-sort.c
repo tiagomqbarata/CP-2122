@@ -13,7 +13,7 @@ int getBucketIndex(int value, int interval) ;
 // Sorting function
 void bucketSort(int arr[], int size, int nBuckets) {
 
-  int i, j;
+  int i, j, k;
   int interval = size/nBuckets;
   int lastIndex[size];
 
@@ -48,7 +48,7 @@ void bucketSort(int arr[], int size, int nBuckets) {
 
   // Put sorted elements on arr
   for (j = 0, i = 0; i < nBuckets; ++i) {
-    for(int k = 0; k < lastIndex[i]; k++)
+    for(k = 0; k < lastIndex[i]; k++)
       arr[j++] = buckets[i][k];
   }
 
@@ -136,7 +136,7 @@ int main(int argc, char const *argv[])
 
 
 
-
+/*
 
 int alloc_array (int **m, int N) {
 
@@ -166,3 +166,4 @@ int main(int argc, char const *argv[])
   return 0;
 }
 
+*/
