@@ -105,7 +105,8 @@ fprintf(stdout, "0");
       min_usec = elapsed_usec;
       for (i=0 ; i< NUM_EVENTS ; i++) min_values[i] = values [i];
    }
-     memcpy(a, ptr, m_size*sizeof(int));
+    if(run != NUM_RUNS-1)
+      memcpy(a, ptr, m_size*sizeof(int));
 
 
   } // end runs
