@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <omp.h>
 
 void partition(int *arr, int *i, int *j);
 void quickSort(int *arr, int size) ;
