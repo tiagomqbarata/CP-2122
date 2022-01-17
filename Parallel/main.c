@@ -130,12 +130,12 @@ fprintf(stdout, "0");
     fprintf (stdout, "CPI = %.2f\n", CPI);
   }
 #endif
-
+/*
   printf("/n/n ");
   for(ptr = a, i = 0; i < m_size; i++, ptr++)
     printf("%d - ", *ptr);
   printf("/n/n ");
-
+*/
 
   free_array (&a);
 
