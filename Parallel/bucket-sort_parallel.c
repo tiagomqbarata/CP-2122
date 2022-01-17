@@ -26,7 +26,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   int **buckets = (int**) malloc(nBuckets * sizeof(int*));
   
   omp_set_num_threads(16);
-  #pragma omp parallel 
+  
   {
     // Inicialize buckets and reserved space
     #pragma omp for
@@ -35,7 +35,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
     }
   }
 
-  #pragma omp parallel
+
   {
     // Separate numbers by buckets
     #pragma omp for
@@ -48,7 +48,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
 
 //  #pragma omp barrier
 
-  #pragma omp parallel
+
   {
     // Sort the elements of each bucket
     #pragma omp for
@@ -57,7 +57,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
         quickSort(buckets[i], lastIndex[i]-1);
   }
 
-  #pragma omp parallel
+
   { 
     // Put sorted elements on arr
     #pragma omp for
