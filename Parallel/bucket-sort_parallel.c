@@ -36,7 +36,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
     // Separate numbers by buckets
     for (i = 0; i < nElementos; ++i) {
       int pos = getBucketIndex(arr[i], interval);
-      #pragma omp critial
+      #pragma omp critical
       buckets[pos][lastIndex[pos]++] = arr[i];
     }
   #pragma omp barrier
