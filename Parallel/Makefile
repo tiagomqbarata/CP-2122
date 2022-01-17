@@ -11,7 +11,7 @@ INCLUDES = -I.
  
 # C compiler flags 
 #CCFLAGS = -O0 -Wall
-CCFLAGS = -O2 -Wall -I/share/apps/papi/5.4.1/include -L/share/apps/papi/5.4.1/lib -fopenmp
+CCFLAGS = -O2 -Wall -I/share/apps/papi/5.4.1/include -L/share/apps/papi/5.4.1/lib -fopenmp -funroll-loops
 #CCFLAGS = -O3 -Wall -msse4.1 -march=i686
 
 # compiler
