@@ -60,8 +60,8 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   
   
   j=0;
-//  #pragma omp parallel num_threads(16)
-//  #pragma omp for schedule(dynamic)
+  #pragma omp parallel num_threads(16)
+  #pragma omp for schedule(dynamic)
     // Put sorted elements on arr
   for (i = 0; i < nBuckets; ++i) {
     j=position(lastIndex, i);
