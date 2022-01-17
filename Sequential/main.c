@@ -62,10 +62,10 @@ fprintf(stdout, "0");
   fprintf (stdout, "done!\n");
 
   alloc_array (&ptr, m_size);
-
+  memcpy(ptr, a, m_size*sizeof(int));
+  
   // warmup caches
   fprintf (stdout, "Warming up caches...");
-  memcpy(ptr, a, m_size*sizeof(int));
   bucketSort (a, m_size, max_random, buckets);
   memcpy(a, ptr, m_size*sizeof(int));
   fprintf (stdout, "done!\n");
@@ -105,7 +105,9 @@ fprintf(stdout, "0");
       min_usec = elapsed_usec;
       for (i=0 ; i< NUM_EVENTS ; i++) min_values[i] = values [i];
    }
-     memcpy(a, ptr, m_size*sizeof(int));
+
+    if(run != NUM_RUNS-1)
+      memcpy(a, ptr, m_size*sizeof(int));
 
 
   } // end runs
@@ -130,10 +132,10 @@ fprintf(stdout, "0");
   }
 #endif
 
-  printf("/n/n ");
+  printf("\n\n ");
   for(ptr = a, i = 0; i < m_size; i++, ptr++)
-  printf("%d - ", *ptr);
-  printf("/n/n ");
+    printf("%d - ", *ptr);
+  printf("\n\n ");
 
   free_array (&a);
 
