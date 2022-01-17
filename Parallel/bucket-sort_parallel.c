@@ -59,7 +59,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
       quickSort(buckets[i], lastIndex[i]-1);
   
   
-  j=0
+  j=0;
 //  #pragma omp parallel num_threads(16)
 //  #pragma omp for schedule(dynamic)
     // Put sorted elements on arr
