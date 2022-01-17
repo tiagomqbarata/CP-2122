@@ -51,16 +51,19 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   }
 */
 
+  #pragma omp parallel num_threads(16)
+  #pragma omp for schedule(dynamic)
   // Sort the elements of each bucket
   for (i = 0; i < nBuckets; ++i) 
     if(lastIndex[i])
       quickSort(buckets[i], lastIndex[i]-1);
-
-  #pragma omp parallel num_threads(16)
-  #pragma omp for schedule(dynamic)
+  
+  
+  j=0
+//  #pragma omp parallel num_threads(16)
+//  #pragma omp for schedule(dynamic)
     // Put sorted elements on arr
   for (i = 0; i < nBuckets; ++i) 
-    j = position(lastIndex, i);
     for(k = 0; k < lastIndex[i]; k++ )
       arr[j++] = buckets[i][k];
 
@@ -174,9 +177,9 @@ int main(int argc, char const *argv[])
 }
 */ 
 
+
+
 /*
-
-
 
 int alloc_array (int **m, int N) {
 
@@ -186,15 +189,14 @@ int alloc_array (int **m, int N) {
 
 int main(int argc, char const *argv[])
 {
-  int *m, *n;
-  int *ptr, *teste;
+  int *m;
+  int *ptr;
   int i;
   int nElems = 200;
   int maxElem = 1000;
   int nBuckets = 10;
 
   alloc_array(&m, nElems);
-  alloc_array(&n, nElems);
 
 
   for (i=0 , ptr = m ; i<nElems ; i++ , ptr++) {
@@ -202,15 +204,11 @@ int main(int argc, char const *argv[])
     *ptr = (int) rand() % maxElem;
 	}
 
-
   bucketSortParallel(m, nElems, maxElem, nBuckets);
 
-  memcpy(n, m, nElems*sizeof(int));
-
-
-  for (i=0 ; i<nElems ; i++ , m++, n++) {
+  for (i=0, ptr=m ; i<nElems ; i++ , ptr ++) {
    // printf("%i %i\n", *ptr, m);
-    printf("%i - %i\n ",*m,*n );
+    printf("%i - ",*ptr );
 	}
   printf ("\n");
 
