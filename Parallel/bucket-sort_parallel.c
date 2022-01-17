@@ -24,9 +24,8 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   
   int **buckets = (int**) malloc(nBuckets * sizeof(int*));
   
-  #pragma omp parallel num_threads(16)
-  {
-    #pragma omp for schedule(dynamic)
+  
+    #pragma omp for parallel num_threads(16) schedule(dynamic)
     // Inicialize buckets and reserved space
     for (i = 0; i < nBuckets; ++i) {
       buckets[i] = (int*)malloc(nElementos*sizeof(int));
@@ -64,7 +63,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
     for(k = 0; k < lastIndex[i]; k++ )
       arr[j++] = buckets[i][k];
   }
-  }
+  
   return;
 }
 
