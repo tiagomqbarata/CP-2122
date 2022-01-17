@@ -5,9 +5,10 @@
 #include <string.h>
 #include <omp.h>
 
-void swap(int* a, int* b) ;
-int partition (int arr[], int low, int high) ;
-void quickSort(int arr[], int low, int high) ;
+void partition(int *arr, int *i, int *j);
+void quickSort(int *arr, int size) ;
+void partition_internel(int *arr, int *i, int *j);
+void quickSort_internel(int *arr, int left, int right) ;
 int getBucketIndex(int value, int interval) ;
 int position(int lastIndex[], int i);
 
@@ -24,11 +25,8 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   
   int **buckets = (int**) malloc(nBuckets * sizeof(int*));
   
-  omp_set_num_threads(16);
-  #pragma omp parallel num_threads(16)
-  {
+
     // Inicialize buckets and reserved space
-    #pragma omp for
     for (i = 0; i < nBuckets; ++i) {
       buckets[i] = (int*)malloc(nElementos*sizeof(int));
     }
@@ -41,25 +39,17 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
       buckets[pos][lastIndex[pos]++] = arr[i];
     }
   
-
-//  #pragma omp barrier
-
-
-  
     // Sort the elements of each bucket
-    #pragma omp for
+    #pragma omp parallel for num_threads(16)
     for (i = 0; i < nBuckets; ++i) 
       if(lastIndex[i])
-        quickSort(buckets[i], 0, lastIndex[i]-1);
-  
+        quickSort(buckets[i], lastIndex[i]-1);
 
-  }
-    j = 0;
-    for (i = 0; i < nBuckets; ++i) {
+  
+    for (i = 0, j = 0; i < nBuckets; ++i)
       for(k = 0; k < lastIndex[i]; k++ )
         arr[j++] = buckets[i][k];
-    }
- 
+  
   
   return;
 }
@@ -76,53 +66,76 @@ int getBucketIndex(int value, int interval) {
   return value / interval;
 }
 
-void swap(int* a, int* b) 
-{ 
-    int t = *a; 
-    *a = *b; 
-    *b = t; 
-} 
+void quickSort(int *arr, int size) 
+{
 
-/* This function takes last element as pivot, places 
-the pivot element at its correct position in sorted 
-array, and places all smaller (smaller than pivot) 
-to left of pivot and all greater elements to right 
-of pivot */
-int partition (int arr[], int low, int high) 
-{ 
-    int pivot = arr[high]; // pivot 
-    int i = (low - 1), j; // Index of smaller element and indicates the right position of pivot found so far
+	int i = 0, j = size;
+  	/* PARTITION PART */
+  partition(arr, &i, &j);
+	#pragma omp parallel
+	#pragma omp single
+	{
+    if (0 < j){
+      #pragma omp task 
+      quickSort_internel(arr, 0, j);
+    }
+    if (i< size){
+      #pragma omp task
+      quickSort_internel(arr, i, size);
+    }
+	}
+}
 
-    for ( j = low; j <= high - 1; j++){ 
-        // If current element is smaller than the pivot 
-        if (arr[j] < pivot) 
-        { 
-            i++; // increment index of smaller element 
-            swap(&arr[i], &arr[j]); 
-        } 
-    } 
-    swap(&arr[i + 1], &arr[high]); 
-    return (i + 1); 
-} 
+void partition(int *arr, int *i, int *j){
+	//float pivot = arr[((*j)+(*i)) / 2];
+	int pivot = arr[(*j)];
+	while ((*i) <= (*j)) {
+		while (arr[(*i)] < pivot)
+			(*i)++;
+		while (arr[(*j)] > pivot)
+			(*j)--;
+		if ((*i) <= (*j)) {
+			int tmp = arr[(*i)];
+			arr[(*i)] = arr[(*j)];
+			arr[(*j)] = tmp;
+			(*i)++;
+			(*j)--;
+		}
+	}
+}
 
-/* The main function that implements QuickSort 
-arr[] --> Array to be sorted, 
-low --> Starting index, 
-high --> Ending index */
-void quickSort(int arr[], int low, int high) 
-{ 
-    if (low < high) 
-    { 
-        /* pi is partitioning index, arr[p] is now 
-        at right place */
-        int pi = partition(arr, low, high); 
+void partition_internel(int *arr, int *i, int *j){
+	//float pivot = arr[((*j)+(*i)) / 2];
+	int pivot = arr[(*j)];
+	while ((*i) <= (*j)) {
+		while (arr[(*i)] < pivot)
+			(*i)++;
+		while (arr[(*j)] > pivot)
+			(*j)--;
+		if ((*i) <= (*j)) {
+			int tmp = arr[(*i)];
+			arr[(*i)] = arr[(*j)];
+			arr[(*j)] = tmp;
+			(*i)++;
+			(*j)--;
+		}
+	}
+}
 
-        // Separately sort elements before 
-        // partition and after partition 
-        quickSort(arr, low, pi - 1); 
-        quickSort(arr, pi + 1, high); 
-    } 
-} 
+void quickSort_internel(int* arr, int left, int right) 
+{
+	int i = left, j = right;
+  	/* PARTITION PART */
+        partition_internel(arr, &i, &j) ;
+
+	/* RECURSION PART */
+	if (left < j){ 
+        	quickSort_internel(arr, left, j);
+    	}
+	if (i< right){
+        	quickSort_internel(arr, i, right);
+    	}
+}
 
 
 
