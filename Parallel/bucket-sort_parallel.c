@@ -39,7 +39,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
       #pragma omp critical
       buckets[pos][lastIndex[pos]++] = arr[i];
     }
-  #pragma omp barrier
+//  #pragma omp barrier
 
 /*
   for(i=0; i<nBuckets; i++){
