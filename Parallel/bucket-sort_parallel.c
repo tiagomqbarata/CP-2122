@@ -84,7 +84,7 @@ void quickSort(int *arr, int size)
   	/* PARTITION PART */
   partition(arr, &i, &j);
 //	#pragma omp parallel
-///	#pragma omp single
+//	#pragma omp single
 	{
     if (0 < j){
 //      #pragma omp task 
