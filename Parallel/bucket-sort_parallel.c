@@ -24,47 +24,48 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   
   int **buckets = (int**) malloc(nBuckets * sizeof(int*));
   
-  
-    #pragma omp parallel for num_threads(16) schedule(dynamic)
-    {
-      // Inicialize buckets and reserved space
+  omp_set_num_threads(16);
+  #pragma omp parallel 
+  {
+    // Inicialize buckets and reserved space
+    #pragma omp for
     for (i = 0; i < nBuckets; ++i) {
       buckets[i] = (int*)malloc(nElementos*sizeof(int));
     }
-    }
-  
-    #pragma omp parallel for num_threads(16) schedule(dynamic)
-    {// Separate numbers by buckets
+  }
+
+  #pragma omp parallel
+  {
+    // Separate numbers by buckets
+    #pragma omp for
     for (i = 0; i < nElementos; ++i) {
       int pos = getBucketIndex(arr[i], interval);
       #pragma omp critical
       buckets[pos][lastIndex[pos]++] = arr[i];
-    }}
-  #pragma omp barrier
-
-/*
-  for(i=0; i<nBuckets; i++){
-    printf("Brucket %d: ", i);
-    for(j = 0; j < lastIndex[i]; j++){
-      printf("%d - ", buckets[i][j]);
     }
-    printf("nElems: %d \n\n", lastIndex[i]);
   }
-*/
 
-    #pragma omp parallel for num_threads(16) schedule(dynamic)
-  {// Sort the elements of each bucket
-  for (i = 0; i < nBuckets; ++i) 
-    if(lastIndex[i])
-      quickSort(buckets[i], lastIndex[i]-1);
+//  #pragma omp barrier
+
+  #pragma omp parallel
+  {
+    // Sort the elements of each bucket
+    #pragma omp for
+    for (i = 0; i < nBuckets; ++i) 
+      if(lastIndex[i])
+        quickSort(buckets[i], lastIndex[i]-1);
   }
-    #pragma omp parallel for num_threads(16) schedule(dynamic)
-   { // Put sorted elements on arr
-  for (i = 0; i < nBuckets; ++i) {
-    j=position(lastIndex, i);
-    for(k = 0; k < lastIndex[i]; k++ )
-      arr[j++] = buckets[i][k];
-  }}
+
+  #pragma omp parallel
+  { 
+    // Put sorted elements on arr
+    #pragma omp for
+    for (i = 0; i < nBuckets; ++i) {
+      j=position(lastIndex, i);
+      for(k = 0; k < lastIndex[i]; k++ )
+        arr[j++] = buckets[i][k];
+    }
+  }
   
   return;
 }
