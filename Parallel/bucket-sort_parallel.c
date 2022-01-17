@@ -40,7 +40,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
     }
   
     // Sort the elements of each bucket
-    #pragma omp parallel for num_threads(16)
+    #pragma omp parallel for num_threads(nBuckets)
     for (i = 0; i < nBuckets; ++i) 
       if(lastIndex[i])
         quickSort(buckets[i], lastIndex[i]-1);
