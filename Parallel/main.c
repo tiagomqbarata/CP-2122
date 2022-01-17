@@ -32,7 +32,8 @@ fprintf(stdout, "0");
   if (!verify_command_line (argc, argv, &m_size, &max_random, &buckets)) {
 	  return 0;
   }
-  m_size = m_size;
+  int random = max_random/buckets;
+  max_random = random*buckets;
 
   fprintf (stdout, "\nSetting up PAPI...");
   // Initialize PAPI 
