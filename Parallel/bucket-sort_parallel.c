@@ -65,6 +65,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
     // Put sorted elements on arr
   for (i = 0; i < nBuckets; ++i) 
     for(k = 0; k < lastIndex[i]; k++ )
+      #pragma omp critical
       arr[j++] = buckets[i][k];
 
   return;
