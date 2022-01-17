@@ -33,9 +33,6 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
       buckets[i] = (int*)malloc(nElementos*sizeof(int));
     }
   
-
-
-  
     // Separate numbers by buckets
     #pragma omp for
     for (i = 0; i < nElementos; ++i) {
@@ -56,13 +53,13 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
         quickSort(buckets[i], 0, lastIndex[i]-1);
   
 
-
+  }
     j = 0;
     for (i = 0; i < nBuckets; ++i) {
       for(k = 0; k < lastIndex[i]; k++ )
         arr[j++] = buckets[i][k];
     }
-  }
+ 
   
   return;
 }
