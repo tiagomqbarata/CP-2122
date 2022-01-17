@@ -53,7 +53,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
     #pragma omp for
     for (i = 0; i < nBuckets; ++i) 
       if(lastIndex[i])
-        quickSort(buckets[i], lastIndex[i]-1);
+        quickSort(buckets[i], 0, lastIndex[i]-1);
   }
 
 
