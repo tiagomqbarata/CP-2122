@@ -31,7 +31,7 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
       buckets[i] = (int*)malloc(nElementos*sizeof(int));
     }
   
-  #pragma omp for schedule(dynamic)
+    #pragma omp parallel for num_threads(16) schedule(dynamic)
     // Separate numbers by buckets
     for (i = 0; i < nElementos; ++i) {
       int pos = getBucketIndex(arr[i], interval);
@@ -50,13 +50,13 @@ void bucketSortParallel(int arr[], int nElementos, int maxRandomNumber, int nBuc
   }
 */
 
-  #pragma omp for schedule(dynamic)
+    #pragma omp parallel for num_threads(16) schedule(dynamic)
   // Sort the elements of each bucket
   for (i = 0; i < nBuckets; ++i) 
     if(lastIndex[i])
       quickSort(buckets[i], lastIndex[i]-1);
   
-  #pragma omp for schedule(dynamic)
+    #pragma omp parallel for num_threads(16) schedule(dynamic)
     // Put sorted elements on arr
   for (i = 0; i < nBuckets; ++i) {
     j=position(lastIndex, i);
